@@ -16,7 +16,7 @@ abstract class Parser[T]:
 object Parsers:
   extension (s: String)
     def charParser(): Parser[Char] =
-      new BasicParser(s.toSet) // with NotTwoConsecutive[Char]
+      new BasicParser(s.toSet)
 
 class BasicParser(chars: Set[Char]) extends Parser[Char]:
   override def parse(t: Char): Boolean = chars.contains(t)
