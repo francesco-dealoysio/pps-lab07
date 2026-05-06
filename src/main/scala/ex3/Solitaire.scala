@@ -29,33 +29,10 @@ package ex3
       case _ =>
         for
           path <- placeMarks(n - 1)
-          next <- nextPositions(path) // y
-          //next <- nextPositions(path.head)
-          //if isSafe(next, path)
+          next <- nextPositions(path)
         yield
           next +: path
-/*
-      def isInside(pos: Pos): Boolean =
-        val (x, y) = pos
-        x >= 0 && x < width && y >= 0 && y < height
-
-      def nextPositions(pos: Pos): Iterable[Pos] =
-        val (x, y) = pos
-        List(
-          (x + 3, y),
-          (x - 3, y),
-          (x, y + 3),
-          (x, y - 3),
-          (x + 2, y + 2),
-          (x + 2, y - 2),
-          (x - 2, y + 2),
-          (x - 2, y - 2)
-        ).filter(isInside)
-
-      def isSafe(pos: Pos, path: Iterable[Pos]): Boolean =
-        !path.exists(_ == pos)
-*/
-      // y
+    
       def nextPositions(path: Iterable[Pos]): Iterable[Pos] =
         val (x, y) = path.head
         List(
@@ -68,8 +45,7 @@ package ex3
           (x - 2, y + 2),
           (x - 2, y - 2)
         ).filter(isAcceptable(_, path))
-
-      // y
+    
       def isAcceptable(pos: Pos, path: Iterable[Pos]): Boolean =
         pos._1 >= 0 && pos._1 < width && pos._2 >= 0 && pos._2 < height && !path.exists(_ == pos)
 

@@ -44,7 +44,6 @@ class LoggingRobot(val robot: Robot) extends Robot:
     robot.act()
     println(robot.toString)
 
-
 class RobotWithBattery(val robot: Robot, var battery: Int, val cost: Int) extends Robot:
   export robot.{position, direction, turn}
 
@@ -56,8 +55,7 @@ class RobotWithBattery(val robot: Robot, var battery: Int, val cost: Int) extend
       println("Battery empty!")
 
   override def toString: String = s"${robot.toString} (battery=$battery)"
-  
-  
+
 class RobotCanFail(val robot: Robot, val failProb: Double) extends Robot:
     export robot.{position, direction, turn}
 
@@ -78,11 +76,8 @@ class RobotRepeated(val robot: Robot, val times: Int) extends Robot:
 
     override def toString: String = s"${robot.toString} (repeated $times times)"
 
-
-
 @main def testRobot(): Unit =
-  import ex2.*
-  
+
   val robot =
     LoggingRobot(
       RobotRepeated(
@@ -102,11 +97,3 @@ class RobotRepeated(val robot: Robot, val times: Int) extends Robot:
   robot.turn(robot.direction.turnRight)
   robot.act()
   robot.act()
-/*
-@main def testRobot(): Unit =
-  val robot = LoggingRobot(SimpleRobot((0, 0), Direction.North))
-  robot.act() // robot at (0, 1) facing North
-  robot.turn(robot.direction.turnRight) // robot at (0, 1) facing East
-  robot.act() // robot at (1, 1) facing East
-  robot.act() // robot at (2, 1) facing East
-*/
